@@ -1,5 +1,5 @@
 #include "stack.h"
-
+#include <stdlib.h>
 /**
  * Crea una nueva pila vacía y la devuelve.
  * 
@@ -11,7 +11,7 @@
 Stack stack_create(int len){
     Stack* stacknew= (Stack*)malloc(len * sizeof(Stack));
     stacknew->top= -1;
-    stack->leng= len;
+    stacknew->leng= len;
 }
 
 /**
@@ -25,12 +25,12 @@ Stack stack_create(int len){
 void stack_push(Stack* s, Data d){
     if(s->top >= s->leng-1){
         printf("la pila esta llena Stack* \n");
-        }
     }else{
         if(stack_is_empty(s) != -1){
-            s[top++]->data= d;
+            s->data[s->top++]= d;
             s->top++;
-    }
+            }
+        }
 }
 
 /**
@@ -44,11 +44,11 @@ void stack_push(Stack* s, Data d){
  */
 Data stack_pop(Stack* s){
     int dato;
-    if(stack_is_empty != -1){
-    dato= s[top]->data;
-    Stack *tmp= s[top]->data;
+    if(stack_is_empty(s) != -1){
+    dato= s->data[s->top];
+    Stack *tmp= s->data[s->top];
     s->top--;
-    free(temp);
+    free(tmp);
     return dato;
     }
     return dato;
@@ -66,8 +66,8 @@ int stack_is_empty(Stack* s){
     if(s != NULL){
         if(s->top == -1 ){
         return 1;
-    }else {return 0}
-    }else{return -1}
+    }else {return 0;}
+    }else{return -1;}
 }
 
 /**
@@ -78,7 +78,7 @@ int stack_is_empty(Stack* s){
  */
 void stack_empty(Stack* s){
     int trash;
-    if(stack_is_empty != -1){
+    if(stack_is_empty(s) != -1){
         while(s->top != -1){
             trash= stack_pop(s);
         }
@@ -108,8 +108,8 @@ void stack_delete(Stack *s){
  */
 void stack_print(Stack *s){
     if(stack_is_empty(s) != -1){
-        for(int i= top; i=0; i--){
-            printf(" El dato es: %i", s[i]->data);
+        for(int i= s->top; i=0; i--){
+            printf(" El dato es: %i", s->data[i]);
         }
     }
 }
