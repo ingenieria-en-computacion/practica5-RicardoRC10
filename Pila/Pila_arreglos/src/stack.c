@@ -6,8 +6,10 @@
  * @return Una nueva pila vacía. Si la creación falla, el estado de la cola es inválido.
  * @details Esta función inicializa una pila vacía.
  */
-Stack stack_create(){
-
+Stack* stack_create(){
+    Stack *NewStack;
+    NewStack->top = -1;
+    return NewStack;
 }
 
 /**
@@ -19,7 +21,10 @@ Stack stack_create(){
  *          la función no realiza ninguna operación.
  */
 void stack_push(Stack* s, Data d){
-
+    if(stack_is_empty(s) != -1){
+        s->data[s->top++] = d;
+        s->top++;
+    }
 }
 
 /**
@@ -32,7 +37,11 @@ void stack_push(Stack* s, Data d){
  *          Si la pila está vacía, no se realiza ninguna operación y se devuelve un valor de error.
  */
 Data stack_pop(Stack* s){
-
+    if(stack_is_empty(s) != -1 && stack_is_empty(s) != 1){
+        int dato;
+       dato=  s->data[s->top];
+       s->top--;
+    }
 }
 
 /**
@@ -44,7 +53,11 @@ Data stack_pop(Stack* s){
  *          como `stack_pop` en una pila vacía.
  */
 int stack_is_empty(Stack* s){
-
+    if(s != NULL){
+        if(s->top == -1){
+            return 1;
+        }else{return 0;}
+    }else{return -1;}
 }
 
 /**
@@ -54,7 +67,12 @@ int stack_is_empty(Stack* s){
  * @details Esta función hace que top sea igual a -1
  */
 void stack_empty(Stack* s){
+    if(stack_is_empty(s) != -1){
+        while(stack_is_empty(s) != 1){
+            int trash= stack_pop(s);
+        }
 
+    }
 }
 
 
@@ -68,5 +86,9 @@ void stack_empty(Stack* s){
  *          la salida estándar (stdout).
  */
 void stack_print(Stack *s){
-
+    if(stack_is_empty(s) != -1){
+        while(stack_is_empty(s) != 1){
+            printf("Dato: %i\n", stack_pop(s));
+        }
+    }
 }
