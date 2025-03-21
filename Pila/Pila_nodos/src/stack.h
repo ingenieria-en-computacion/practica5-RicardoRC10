@@ -5,7 +5,8 @@
 
 
 typedef struct {
-    Node* top;
+    Node* top= NULL;
+    Node* first = NULL;
 } Stack;
 
 Stack *stack_create();
