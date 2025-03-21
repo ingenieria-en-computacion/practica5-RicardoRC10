@@ -9,7 +9,9 @@
  *          Asigna memoria dinámica a data mediante malloc con un número de elementos igual a len
  */
 Stack stack_create(int len){
-
+    Stack* stacknew= (Stack*)malloc(len * sizeof(Stack));
+    stacknew->top= -1;
+    stack->leng= len;
 }
 
 /**
@@ -21,7 +23,14 @@ Stack stack_create(int len){
  *          la función no realiza ninguna operación.
  */
 void stack_push(Stack* s, Data d){
-
+    if(s->top >= s->leng-1){
+        printf("la pila esta llena Stack* \n");
+        }
+    }else{
+        if(stack_is_empty(s) != -1){
+            s[top++]->data= d;
+            s->top++;
+    }
 }
 
 /**
@@ -34,7 +43,15 @@ void stack_push(Stack* s, Data d){
  *          Si la pila está vacía, no se realiza ninguna operación y se devuelve un valor de error.
  */
 Data stack_pop(Stack* s){
-
+    int dato;
+    if(stack_is_empty != -1){
+    dato= s[top]->data;
+    Stack *tmp= s[top]->data;
+    s->top--;
+    free(temp);
+    return dato;
+    }
+    return dato;
 }
 
 /**
@@ -46,7 +63,11 @@ Data stack_pop(Stack* s){
  *          como `stack_pop` en una pila vacía.
  */
 int stack_is_empty(Stack* s){
-
+    if(s != NULL){
+        if(s->top == -1 ){
+        return 1;
+    }else {return 0}
+    }else{return -1}
 }
 
 /**
@@ -56,7 +77,12 @@ int stack_is_empty(Stack* s){
  * @details Esta función hace que top sea igual a -1
  */
 void stack_empty(Stack* s){
-
+    int trash;
+    if(stack_is_empty != -1){
+        while(s->top != -1){
+            trash= stack_pop(s);
+        }
+    }
 }
 
 /**
@@ -66,7 +92,9 @@ void stack_empty(Stack* s){
  * @details Esta función libera la memoria asignada dinámicamente para data dentro de la pila
  */
 void stack_delete(Stack *s){
-
+    stack_empty(s);
+    s= NULL;
+    free(s);
 }
 
 /**
@@ -79,5 +107,9 @@ void stack_delete(Stack *s){
  *          la salida estándar (stdout).
  */
 void stack_print(Stack *s){
-
+    if(stack_is_empty(s) != -1){
+        for(int i= top; i=0; i--){
+            printf(" El dato es: %i", s[i]->data);
+        }
+    }
 }
